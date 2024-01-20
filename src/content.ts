@@ -1,6 +1,7 @@
 import { getRandomValues } from 'uncrypto';
 
 import yippee from './assets/yippee.gif'
+import salad from './assets/salad.jpg'
 import yippeeSound from './assets/yippee.mp3'
 
 interface Coords {
@@ -48,4 +49,10 @@ document.addEventListener('click', () => {
   document.body.append(cat)
   document.body.append(sound)
 })
+
+const allImages = document.querySelectorAll("img")
+
+for (const image of allImages) {
+  image.src = chrome.runtime.getURL(salad)
+}
 
