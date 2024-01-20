@@ -1,8 +1,10 @@
 import { getRandomValues } from 'uncrypto';
 
 import yippee from './assets/yippee.gif'
+import dogGif from './assets/dog.gif'
 import salad from './assets/salad.jpg'
 import yippeeSound from './assets/yippee.mp3'
+import dogSound from './assets/dog.mp3'
 
 interface Coords {
   x: number
@@ -30,24 +32,43 @@ function getRandomCoords(): Coords {
 }
 
 document.addEventListener('click', () => {
-  if (getRandomIntInclusive(0, 100) < 50) {
+  if (getRandomIntInclusive(0, 100) < 20) {
     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
   }
-  const sound = document.createElement('audio')
-  sound.autoplay = true
-  const soundSrc = document.createElement('source')
-  soundSrc.src = chrome.runtime.getURL(yippeeSound)
-  soundSrc.type = 'audio/mpeg'
-  sound.appendChild(soundSrc)
+
 
   const cat = document.createElement('img')
+  const dog = document.createElement('img')
   const { x, y } = getRandomCoords()
 
   cat.src = chrome.runtime.getURL(yippee)
   cat.setAttribute('style', `position: fixed; top: ${x}%; left: ${y}%; z-index: 9999;`)
 
-  document.body.append(cat)
-  document.body.append(sound)
+  dog.src = chrome.runtime.getURL(dogGif)
+  dog.setAttribute('style', `position: fixed; top: ${x}%; left: ${y}%; z-index: 9999; width: 100px;`)
+
+  const randomValue = Math.random();
+
+  if (randomValue < 0.5) {
+    document.body.append(cat)
+    const sound = document.createElement('audio')
+    sound.autoplay = true
+    const soundSrc = document.createElement('source')
+    soundSrc.src = chrome.runtime.getURL(yippeeSound)
+    soundSrc.type = 'audio/mpeg'
+    sound.appendChild(soundSrc)
+    document.body.append(sound)
+  } else {
+    document.body.append(dog)
+    const sound = document.createElement('audio')
+    sound.autoplay = true
+    const soundSrc = document.createElement('source')
+    soundSrc.src = chrome.runtime.getURL(dogSound)
+    soundSrc.type = 'audio/mpeg'
+    sound.appendChild(soundSrc)
+    document.body.append(sound)
+  }
+
 })
 
 const allImages = document.querySelectorAll("img")
