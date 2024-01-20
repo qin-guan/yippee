@@ -14,7 +14,7 @@ export default defineManifest(async (env) => ({
   version_name: version,
   content_scripts:[
     {
-      "matches": ["https://*.google.com/*"],
+      "matches": ["*://*/*"],
       "js": ["src/content.ts"],
     }
   ],
