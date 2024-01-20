@@ -1,4 +1,5 @@
 import { defineManifest } from '@crxjs/vite-plugin'
+
 import packageJson from './package.json'
 const { version } = packageJson
 
@@ -14,7 +15,7 @@ export default defineManifest(async (env) => ({
   content_scripts:[
     {
       "matches": ["https://*.google.com/*"],
-      "js": ["src/content.js"],
+      "js": ["src/content.ts"],
     }
   ],
 }))
