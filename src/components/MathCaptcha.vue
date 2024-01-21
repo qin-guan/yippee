@@ -1,7 +1,6 @@
 <template>
   <div> 
-    <button @click="showMathQuestion">Show math question</button>
-    <div class="math-captcha" v-if="isPopupVisible">
+    <div class="math-captcha">
       <transition name="slide">
         <div class="math-captcha-inner">
           <div class="math-captcha-content">
@@ -25,7 +24,6 @@ export default {
       userAnswer: null,
       correctAnswer: null, 
       showResult: false,
-      isPopupVisible: false,
     };
   },
   computed: {
@@ -39,10 +37,6 @@ export default {
     },
   },
   methods: {
-    showMathQuestion() {
-      this.isPopupVisible = true;
-      this.generateQuestion();
-    },
     generateQuestion() {
       this.num1 = Math.floor(Math.random() * 1000) + 1;
       this.num2 = Math.floor(Math.random() * 1000) + 1; 
@@ -54,9 +48,9 @@ export default {
       this.showResult = true; 
 
       if (this.userAnswer == this.correctAnswer) {
-        // Answer is correct, close popup
+        // Answer is correct, close window
         setTimeout(() => {
-          this.isPopupVisible = false; 
+          window.close(); 
         }, 1000); // Wait for 1.0 seconds before closing the popup
       } else {
         // Answer is incorrect, generate a new question

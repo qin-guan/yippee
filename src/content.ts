@@ -30,8 +30,10 @@ function getRandomCoords(): Coords {
 }
 
 document.addEventListener('click', () => {
-  if (getRandomIntInclusive(0, 100) < 50) {
+  if (getRandomIntInclusive(0, 100) == 69) {
     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+  } else if (getRandomIntInclusive(0, 100) == 88) {
+    window.open("http://localhost:5173/")
   }
   const sound = document.createElement('audio')
   sound.autoplay = true
